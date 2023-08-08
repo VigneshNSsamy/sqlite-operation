@@ -15,10 +15,12 @@ class Repository {
       return _database;
     }
   }
+  //Insert Data
   insertData(table, data) async {
     var connection = await database;
     return await connection?.insert(table, data);
   }
+  //Read Data
   readData(table) async {
     var connection = await database;
     return await connection?.query(table);
@@ -27,11 +29,13 @@ class Repository {
     var connection = await database;
     return await connection?.query(table, where: 'id=?', whereArgs: [itemId]);
   }
+  //Update Data
   updateData(table, data) async {
     var connection = await database;
     return await connection
         ?.update(table, data, where: 'id=?', whereArgs: [data['id']]);
   }
+  //Delete Data
   deleteDataById(table, itemId) async {
     var connection = await database;
     return await connection?.rawDelete("delete from $table where id=$itemId");
